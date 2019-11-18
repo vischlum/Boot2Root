@@ -57,7 +57,4 @@ Dirty COW a ete decouverte par Phil Oester.
 ```
 Video Youtube
 Lien: https://www.youtube.com/watch?v=kEsshExn7aE
-
-Exploit Dirty COW
-Lien: https://www.exploit-db.com/exploits/40839
 ```
