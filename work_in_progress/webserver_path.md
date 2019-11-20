@@ -17,7 +17,7 @@ On se rend sur le forum, dans lequel on trouve un topic 'Probleme login ?' post�
 Il contient des logs de connexions.
 On remarque que le log précédent la connexion réussie de lmezard contient un username ressemblant a un mot de passe :
  
- > !q\]Ej?*5K5cy*AJ
+ > ``!q\]Ej?*5K5cy*AJ``
 
 On utiliser ces credentials pour se connecter au forum.
 On accede au profil perso de lmezard dans lequel apparait son adresse mail :
@@ -58,6 +58,7 @@ On obtient bien la liste des fichiers présents dans le dossier.
 
 Pour faciliter la navigation dans le filesystem, on peut uploader un reverse shell sur le serveur pour s'y connecter en remote.
 On récupère un reverse-shell sur le web qu'on configure pour fonctionner avec nos VM.
+> ``https://github.com/pentestmonkey/php-reverse-shell``
 Pour uploader ce shell sur le serveur, on le place sur un serveur perso et on utilise notre backdoor.
 Sur le serveur perso, on place php-reverse-shell à la racine du site.
 Sur un browser on lance:
