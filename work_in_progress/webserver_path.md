@@ -17,7 +17,7 @@ On se rend sur le forum, dans lequel on trouve un topic 'Probleme login ?' post�
 Il contient des logs de connexions.
 On remarque que le log précédent la connexion réussie de lmezard contient un username ressemblant a un mot de passe :
  
- > !q\]Ej?*5K5cy*AJ
+ > ``!q\]Ej?*5K5cy*AJ``
 
 On utiliser ces credentials pour se connecter au forum.
 On accede au profil perso de lmezard dans lequel apparait son adresse mail :
