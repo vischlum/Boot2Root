@@ -95,7 +95,27 @@ NO SPACE IN THE PASSWORD (password is case sensitive).
 
 ## `bomb`
 
+En utilisant le débugueur GDB agrémenté du logiciel peda, nous pouvons décompiler le binaire de bomb et ainsi comprendre les entrées attendues, qui constitueront le prochain mot de passe.
+
 ### Étape 1
+Bomb attend en entrée une chaîne de caractères qu’il compare ensuite à la chaîne “Publicspeakingisveryeasy.” Pour valider le passage à l’étape suivante.
+
+### Étape 2
+Bomb attend désormais une entrée composée de 6 entiers, et on sait déjà que le deuxième entier est 2. Après avoir observé les 4 premiers entiers avec lesquels étaient comparés notre entrée, on comprend qu’il s’agit de la suite de Fibonacci : 1 2 6 24 120 720
+
+### Étape 3
+Bomb attend ici une entrée composée d’un int, un char, et un int. On observe dans le binaire décompilé qu’il y a plusieurs possibilités qui permettent d’atteindre l’étape suivante, mais seule une est le bonne portion du mot de passe. On sait déjà que le char est b, et la bonne réponse s’avère être 1 b 214.
+
+### Étape 4
+L’entrée attendue est ici un entier, qui passe ensuite dans une fonction de hash, et qui est à sa sortie comparé à l’entier 55. On observe que la fonction de hash est exponentiellement longue proportionnellement à la hauteur de l’entier, et en testant avec la valeur 9, on passe à l’étape suivante.
+
+### Étape 5
+Ici, l’entrée attendue est une chaîne de caractères. Chaque caractère va ensuite se voir appliquer un masque de & 0xF pour donner un int qui sera utilisé comme index pour aller chercher un caractère dans une chaîne écrite en dur dans le binaire afin décrire le mot “giants”.
+
+### Étape 6
+Pour la dernière étape, le programme attend 6 int. Il vérifie d’abord qu’aucun des int ne se répète, et ensuite qu’aucun des int n’est inférieur à 1 ou supérieur à 6. Il vérifie ensuite l’ordre : 4 2 6 1 3 5. 
+
+Le mot de passe de l’utilisateur “Thor” est `Publicspeakingisveryeasy.126241207201b2149opekmq426135` 
 
 # thor
 On a un `README` :
