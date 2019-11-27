@@ -39,10 +39,10 @@ L'éxécutable va modifier le fichier ```/etc/passwd```. Selon la documentation 
 
 ```smithj:x:561:561:Joe Smith:/home/smithj:/bin/bash```
 
-Un “x” dans le champ mot de passe. Les mots de passe sont stockés dans le fichier ``/etc/shadow``.
+Un “x” dans le champ mot de passe indique que les mots de passe sont stockés dans le fichier ``/etc/shadow``.
 
+Lorsqu'on exécute ```dirty```, celui-ci va remplace le "x" par le hash du mot de passe que nous venons de saisir.
 
-le hash du user root par le hash du mot de passe que nous venons de saisir.
 ```
 http://www.linux-france.org/article/sys/lame/html/x829.html
 ```
