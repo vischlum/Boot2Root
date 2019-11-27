@@ -41,7 +41,7 @@ L'éxécutable va modifier le fichier ```/etc/passwd```. Selon la documentation 
 
 Un “x” dans le champ mot de passe indique que les mots de passe sont stockés dans le fichier ``/etc/shadow``.
 
-Lorsqu'on exécute ```dirty```, celui-ci va remplace le "x" par le hash du mot de passe que nous venons de saisir.
+Lorsqu'on exécute ```dirty```, celui-ci va remplacer le "x" par le hash du mot de passe que nous venons de saisir. Ainsi lors de la comparaison des hash au moment de la connexion, le kernel va comparer le hash présent dans le fichier ```/etc/passwd``` et non plus dans le fichier ```/etc/shadow```.
 
 ```
 http://www.linux-france.org/article/sys/lame/html/x829.html
