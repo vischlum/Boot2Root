@@ -35,7 +35,15 @@ On exécute
 $ ./dirty <NEW-PASSWORD>
 ```
 
-L'éxécutable va remplacer dans la mémoire (fichier ```/etc/passwd```), le hash du user root par le hash du mot de passe que nous venons de saisir.
+L'éxécutable va modifier le fichier ```/etc/passwd```. Selon la documentation Linux (voir lien), le fichier est constitué de la façon suivante:
+```smithj:x:561:561:Joe Smith:/home/smithj:/bin/bash```
+Un “x” dans le champ mot de passe. Les mots de passe sont stockés dans le fichier ``/etc/shadow``.
+
+
+le hash du user root par le hash du mot de passe que nous venons de saisir.
+```
+http://www.linux-france.org/article/sys/lame/html/x829.html
+```
 
 On exécute ```su``` avec le mot de passe choisi.
 
