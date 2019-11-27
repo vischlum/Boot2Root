@@ -131,13 +131,13 @@ On a un exécutable `exploit_me`, dont le [`suid`](https://en.wikipedia.org/wiki
 
 ## `exploit_me`
 
-Exploit_me est un binaire qui imprime sur l’entrée standard le premier argument reçu en ligne de commande. Il est très facile de faire segfaulter le programme avec une entrée longue, et on suppose donc une absence de protection exploitable afin de provoquer un buffer overflow.  
-On suppose ici qu’exploit_me utilise une fonction qui emploie un buffer alloué de manière statique. Cela signifie qu’un emplacement lui est réservé dans la `stack` de la mémoire. Dans la `stack` se trouve également l’adresse du retour de la fonction. Ainsi, après avoir exécuté sa fonction, le programme sait qu’il doit aller à cette adresse pour connaître son instruction suivante.  
+`exploit_me` est un binaire qui imprime sur l’entrée standard le premier argument reçu en ligne de commande. Il est très facile de faire segfaulter le programme avec une entrée longue, et on suppose donc une absence de protection exploitable afin de provoquer un buffer overflow.  
+On suppose ici qu’`exploit_me` utilise une fonction qui emploie un buffer alloué de manière statique. Cela signifie qu’un emplacement lui est réservé dans la `stack` de la mémoire. Dans la `stack` se trouve également l’adresse du retour de la fonction. Ainsi, après avoir exécuté sa fonction, le programme sait qu’il doit aller à cette adresse pour connaître son instruction suivante.  
 Le principe de l’exploitation du buffer overflow est de réécrire l’adresse du retour, afin de lui indiquer un endroit de la stack et faire exécuter au programme une commande que nous avons écrite dans l’endroit de la stack qui a été alloué pour le buffer.
 
 Cette faille est donc exploitable en donnant en paramètre un script en shellcode composé des éléments suivants :
 * Des `\x90` (trente-cinq) qui correspondent à la commande [`nop`](https://en.wikipedia.org/wiki/NOP_(code)), qui indique d’aller à l’instruction suivante, afin de donner une marge d’erreur lorsque l’on donne l’adresse du retour ([*NOP slide*](https://en.wikipedia.org/wiki/NOP_slide)).
-* Un script shellcode qui lance la commande `/zsh/bin/`
+* Un script shellcode qui lance la commande `/bin/sh`
 * Un script shellcode qui ouvre l’entrée standard afin de pouvoir écrire des instructions
 * Une adresse qui va s’inscrire en lieu de l’adresse où se trouve le retour de la fonction, qui pointe vers le debut de la stack, vers les instructions `nop`.
 
