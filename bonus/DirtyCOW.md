@@ -36,7 +36,9 @@ $ ./dirty <NEW-PASSWORD>
 ```
 
 L'éxécutable va modifier le fichier ```/etc/passwd```. Selon la documentation Linux (voir lien), le fichier est constitué de la façon suivante:
+
 ```smithj:x:561:561:Joe Smith:/home/smithj:/bin/bash```
+
 Un “x” dans le champ mot de passe. Les mots de passe sont stockés dans le fichier ``/etc/shadow``.
 
 
@@ -68,4 +70,3 @@ La faille Dirty COW a été découverte par Phil Oester.
 Video Youtube
 Lien: https://www.youtube.com/watch?v=kEsshExn7aE
 ```
-http://www.linux-france.org/article/sys/lame/html/x829.html
