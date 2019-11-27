@@ -11,4 +11,4 @@ Projet réalisé en équipe par [Suzanne Repellin](https://github.com/SuzanneRep
 - Vulnhub.com est un site de partage d'ISO Boot2Root. [La FAQ](https://www.vulnhub.com/faq/) est un bon point de départ.
 - [Un PDF très complet](https://www.sans.org/reading-room/whitepapers/testing/attack-defend-linux-privilege-escalation-techniques-2016-37562) avec de nombreux exemples d'élévation de privilège. Sur le même sujet, voir aussi [cet article](https://payatu.com/blog/Rashid-Feroze/guide-linux-privilege-escalation)
 - Doris Avram et Françoise Trehard, *Bonjour LOGO ! : une initiation au langage de la tortue sur TO7 et MO5*,  CEDIC/Nathan, 1985 : car on ne pouvait pas passer à côté d'une [si jolie couverture ](https://gallica.bnf.fr/ark:/12148/bpt6k33302477/f1.image.texteImage) :turtle:
-- [Buffer Overflow Attack - Computerphile] https://www.youtube.com/watch?v=1S0aBV-Waeo
+- [Buffer Overflow Attack - Computerphile] (https://www.youtube.com/watch?v=1S0aBV-Waeo)
