@@ -67,7 +67,7 @@ Sans surprise, `README` contient la marche à suivre :
 ```
 Complete this little challenge and use the result as password for user 'laurie' to login in ssh
 ```
-`file fun` nous apprend qu'il s'agit d'un archive tar. Elle contient des bribes d'un fichier .c, disséminées dans plusieurs centaines de fichiers. Pour gagner du temps, nous avons développé un [script python](/scripts/nofun.py) pour débrouiller la chose, et nous permet d'obtenir :
+`file fun` nous apprend qu'il s'agit d'une archive tar. Elle contient des bribes d'un fichier .c, disséminées dans plusieurs centaines de fichiers. Pour gagner du temps, nous avons développé un [script python](/scripts/nofun.py) pour débrouiller la chose, et nous permettre d'obtenir :
 ```
 MY PASSWORD IS: Iheartpwnage
 Now SHA-256 it and submit
@@ -131,15 +131,15 @@ On a un exécutable `exploit_me`, dont le [`suid`](https://en.wikipedia.org/wiki
 
 ## `exploit_me`
 
-Exploit_me est un binaire qui imprime sur l’entrée standard le premier argument reçu en ligne de commande. Il est très facile de faire segfaulter le programme avec une entrée longe, et on suppose donc une absence de protection exploitable afin de provoquer un buffer overflow.
-On suppose ici qu’exploit_me utilise une fonction qui emploie un buffer alloué de manière statique. Cela signifie qu’une emplacement lui est réservé dans la `stack` de la mémoire. Dans la `stack` se trouve également l’adresse du retour de la fonction. Ainsi, après avoir exécuté sa fonction, le programme sait qu’il doit aller à cette adresse pour connaître son instruction suivante. Le principe de l’exploitation du buffer overflow est de réécrire l’adresse du retour, afin de lui indiquer un endroit de la stack et faire exécuter au programme une commande que nous avons écrite dans l’endroit de la stack qui a été alloué pour le buffer.
+Exploit_me est un binaire qui imprime sur l’entrée standard le premier argument reçu en ligne de commande. Il est très facile de faire segfaulter le programme avec une entrée longue, et on suppose donc une absence de protection exploitable afin de provoquer un buffer overflow.  
+On suppose ici qu’exploit_me utilise une fonction qui emploie un buffer alloué de manière statique. Cela signifie qu’un emplacement lui est réservé dans la `stack` de la mémoire. Dans la `stack` se trouve également l’adresse du retour de la fonction. Ainsi, après avoir exécuté sa fonction, le programme sait qu’il doit aller à cette adresse pour connaître son instruction suivante.  
+Le principe de l’exploitation du buffer overflow est de réécrire l’adresse du retour, afin de lui indiquer un endroit de la stack et faire exécuter au programme une commande que nous avons écrite dans l’endroit de la stack qui a été alloué pour le buffer.
 
 Cette faille est donc exploitable en donnant en paramètre un script en shellcode composé des éléments suivants :
-
-* Des `\x90` (trente-cinq) qui correspondent a la commande `nop`, qui indique d'aller a l'instruction suivante, afin de donner une marge d'erreur lorsque l’on donne l'adresse du retour.
+* Des `\x90` (trente-cinq) qui correspondent à la commande `nop`, qui indique d'aller à l'instruction suivante, afin de donner une marge d'erreur lorsque l’on donne l'adresse du retour.
 * Un script shellcode qui lance la commande `/zsh/bin/`
 * Un script shellcode qui ouvre l'entrée standard afin de pouvoir écrire des instructions
-* Une adresse qui va s'inscrire en lieu de l'adresse ou se trouve le retour de la fonction, qui pointe vers le debut de la stack, vers les instructions `nop`.
+* Une adresse qui va s'inscrire en lieu de l'adresse où se trouve le retour de la fonction, qui pointe vers le debut de la stack, vers les instructions `nop`.
 
 `./exploit_me $(python -c 'print "\x90" * 35 + "\x31\xc0\x83\xec\x01\x88\x04\x24\x68\x2f\x7a\x73\x68\x68\x2f\x62\x69\x6e\x68\x2f\x75\x73\x72\x89\xe6\x50\x56\xb0\x0b\x89\xf3\x89\xe1\x31\xd2\xcd\x80\xb0\x01\x31\xdb\xcd\x80\x83\xc4\x10\x31\xc0\x31\xdb\xb0\x06\xcd\x80\x53\x68/tty\x68/dev\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80" + "\x88\xf8\xff\xbf" * 2')`
 
