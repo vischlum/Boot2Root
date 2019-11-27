@@ -35,7 +35,9 @@ On exécute
 $ ./dirty <NEW-PASSWORD>
 ```
 
-On exécute ```su firefart``` avec le mot de passe choisi.
+L'éxécutable va remplacer dans la mémoire (fichier ```/etc/passwd```), le hash du user root par le hash du mot de passe que nous venons de saisir.
+
+On exécute ```su``` avec le mot de passe choisi.
 
 On verifie l'uid
 ```
@@ -58,3 +60,4 @@ La faille Dirty COW a été découverte par Phil Oester.
 Video Youtube
 Lien: https://www.youtube.com/watch?v=kEsshExn7aE
 ```
+http://www.linux-france.org/article/sys/lame/html/x829.html
