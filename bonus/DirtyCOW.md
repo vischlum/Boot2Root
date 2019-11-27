@@ -7,7 +7,7 @@ $ ssh laurie@<IP>
 ```
 
 # Version KERNEL
-On verifie la version du Kernel
+On vérifie la version du Kernel
 ```
 $ uname -a
 ```
