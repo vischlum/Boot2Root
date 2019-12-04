@@ -98,7 +98,7 @@ NO SPACE IN THE PASSWORD (password is case sensitive).
 En utilisant le débugueur GDB agrémenté du logiciel peda, nous pouvons décompiler le binaire de bomb et ainsi comprendre les entrées attendues, qui constitueront le prochain mot de passe.
 
 ### Étape 1
-Bomb attend en entrée une chaîne de caractères qu’il compare ensuite à la chaîne `Publicspeakingisveryeasy.` Pour valider le passage à l’étape suivante.
+Bomb attend en entrée une chaîne de caractères qu’il compare ensuite à la chaîne `Public speaking is very easy.` Pour valider le passage à l’étape suivante.
 
 ### Étape 2
 Bomb attend désormais une entrée composée de 6 entiers, et on sait déjà que le deuxième entier est 2. Après avoir observé les 4 premiers entiers avec lesquels étaient comparés notre entrée, on comprend qu’il s’agit de la suite de Fibonacci : `1 2 6 24 120 720`
@@ -113,7 +113,8 @@ L’entrée attendue est ici un entier, qui passe ensuite dans une fonction de h
 Ici, l’entrée attendue est une chaîne de caractères. Chaque caractère va ensuite se voir appliquer un masque de & 0xF pour donner un int qui sera utilisé comme index pour aller chercher un caractère dans une chaîne écrite en dur dans le binaire afin décrire le mot `giants`.   L’entrée attendue est `opekmq`.
 
 ### Étape 6
-Pour la dernière étape, le programme attend 6 int. Il vérifie d’abord qu’aucun des int ne se répète, et ensuite qu’aucun des int n’est inférieur à 1 ou supérieur à 6. Il vérifie ensuite l’ordre : `4 2 6 1 3 5`. 
+Pour la dernière étape, le programme attend 6 int. Il vérifie d’abord qu’aucun des int ne se répète, et ensuite qu’aucun des int n’est inférieur à 1 ou supérieur à 6. Il vérifie ensuite l’ordre : `4 2 6 3 1 5`. 
+Une info trouvée sur feu le forum de 42 nous indique qu'il faut inverser le 3 et le 1 pour le mot de passe final.
 
 Le mot de passe de l’utilisateur “Thor” est `Publicspeakingisveryeasy.126241207201b2149opekmq426135` 
 
