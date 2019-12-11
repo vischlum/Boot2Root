@@ -101,7 +101,7 @@ En utilisant le débugueur GDB agrémenté du logiciel peda, nous pouvons décom
 Bomb attend en entrée une chaîne de caractères qu’il compare ensuite à la chaîne `Public speaking is very easy.` Pour valider le passage à l’étape suivante.
 
 ### Étape 2
-Bomb attend désormais une entrée composée de 6 entiers, et on sait déjà que le deuxième entier est 2. Après avoir observé les 4 premiers entiers avec lesquels étaient comparés notre entrée, on comprend qu’il s’agit de la suite de Fibonacci : `1 2 6 24 120 720`
+Bomb attend désormais une entrée composée de 6 entiers, et on sait déjà que le deuxième entier est 2. Après avoir observé les 4 premiers entiers avec lesquels étaient comparés notre entrée, on comprend qu’il s’agit de la fonction factorielle : `1 2 6 24 120 720`
 
 ### Étape 3
 Bomb attend ici une entrée composée d’un int, un char, et un int. On observe dans le binaire décompilé qu’il y a plusieurs possibilités qui permettent d’atteindre l’étape suivante, mais seule une est le bonne portion du mot de passe. On sait déjà que le char est b, et la bonne réponse s’avère être `1 b 214`.
